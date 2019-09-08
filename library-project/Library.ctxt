@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Library
+comment0.text=\n\ A\ library\ class\ that\ creates\ and\ manages\ an\ ArrayList\ of\ Book\ objects.\n\ \n\ Books\ can\ be\ added,\ and\ a\ list\ of\ books\ in\ library\ can\ be\ printed.\n\ \n\ @author\ Olav\ Valle\ \ \ \n\ @version\ 20190908\n
+comment1.params=
+comment1.target=Library()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Library\n
+comment2.params=
+comment2.target=void\ makeLibrary()
+comment2.text=\n\ Generates\ a\ collection\ of\ books\ and\ adds\ them\ to\ the\ library\n
+comment3.params=bookTitle\ bookAuthor\ bookPublisher\ publishingDate\ bookPages\ ean13
+comment3.target=void\ addBook(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ java.lang.String)
+comment3.text=\n\ Creates\ new\ Book\ instance\ from\ the\ parameters\ given,\ \n\ and\ adds\ the\ new\ book\ to\ library\ ArrayList.\n
+comment4.params=
+comment4.target=void\ listAllBooks()
+comment4.text=\n\ Calls\ the\ printDetails\ method\ for\ each\ Book\ object\ in\ library.\n\ Formatting\ of\ printed\ message\ is\ handled\ by\ Book\ object,\ \n\ see\ printDetails\ method\ in\ Book\ class.\n\ \n\ For\ readablility,\ a\ separator\ containing\ the\ index\ number\ is\ added\ between\ each\ object\n
+numComments=5
