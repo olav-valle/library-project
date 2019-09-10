@@ -113,7 +113,7 @@ public class Library
             String allFields = foundBook.getFieldsAsString();
             if (allFields.contains(keyword)) {
                 JOptionPane.showMessageDialog(null,
-                foundBook.getName(),
+                foundBook.printDetails(),
                 "MATCH FOUND",
                 JOptionPane.INFORMATION_MESSAGE);
             }       

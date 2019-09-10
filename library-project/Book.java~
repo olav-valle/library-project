@@ -40,7 +40,7 @@ public class Book
     }
 
     // TODO: Add mutators for other fields, 
-    // e.g. in case original entry was misspelled?
+	// e.g. in case original entry was misspelled?
 
     // mutators
 
@@ -90,8 +90,7 @@ public class Book
     */
     public String getFieldsAsString()
     {
-        String allFields = (title + authorName + publisher + date + pages + ean13);
-        return allFields;
+        String allFields = title + authorName + publisher + date + pages + ean13
     }
 
     // print methods
