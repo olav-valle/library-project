@@ -31,13 +31,23 @@ public class Library
      */
     public void makeLibrary()
     {
-        addBook("The Colour of Magic", "Terry Pratchett", "Corgi", "1985", "285", "9780552124751");
-        addBook("The Light Fantastic", "Terry Pratchett", "Corgi", "1986", "241", "9780061020704");
-        addBook("A first course in machine learning (Second edition)", "Simon Rogers, Mark Girolami", "CRC Press", "2017", "397", "9781498738484");
-        addBook("The Shadow of the Torturer", "Gene Wolfe", "Tom Doherty Associates, Inc.", "1982", "262", "9780671540661");
-        addBook("Molecular Gastronomy: Exploring the science of Flavor", "Hervé This", "Columbia University Press", "2006", "377", "9780231133128");
-        addBook("Les Halles Cookbook", "Anthony Bourdain", "Bloomsbury", "2004", "304", "9780747580126");
-        addBook("Larousse Gastronomique", "Prosper Montagné", "Éditions Larousse", "1938", "1087", "9780600620426");
+        addBook("The Colour of Magic", "Terry Pratchett", "Corgi", "1985", 
+                "285", "9780552124751");
+        addBook("The Light Fantastic", "Terry Pratchett", "Corgi", "1986", 
+                "241", "9780061020704");
+        addBook("A first course in machine learning (Second edition)", 
+                "Simon Rogers, Mark Girolami", "CRC Press", "2017", "397",
+                 "9781498738484");
+        addBook("The Shadow of the Torturer", "Gene Wolfe", 
+                "Tom Doherty Associates, Inc.", "1982", "262", 
+                "9780671540661");
+        addBook("Molecular Gastronomy: Exploring the science of Flavor", 
+                "Hervé This", "Columbia University Press", "2006", "377", 
+                "9780231133128");
+        addBook("Les Halles Cookbook", "Anthony Bourdain", "Bloomsbury", 
+                "2004", "304", "9780747580126");
+        addBook("Larousse Gastronomique", "Prosper Montagné", 
+                "Éditions Larousse", "1938", "1087", "9780600620426");
     }
     
     /**
@@ -49,26 +59,29 @@ public class Library
     }
     
     /**
-     * Creates new Book instance, using the parameters given, by calling Book constructor, 
-     * and adds the new book to library ArrayList.
+     * Creates new Book instance, using the parameters given, by calling 
+     * Book constructor, and adds the new book to library using addBook method.
      */
     
-    public void addBook(String bookTitle, String bookAuthor, String bookPublisher,
-                        String publishingDate, String bookPages, String ean13)
+    public void addBook(String bookTitle, String bookAuthor, 
+                        String bookPublisher,String publishingDate, 
+                        String bookPages, String ean13)
     {
-        Book newBook = new Book(bookTitle, bookAuthor, bookPublisher, publishingDate, 
-                                bookPages, ean13);
-        this.library.add(newBook);
+        Book newBook = new Book(bookTitle, bookAuthor, bookPublisher, 
+                                publishingDate, bookPages, ean13);
+        addBook(newBook);
     }
     
-    /**
-     * Calls the printDetails method for each Book object in library.
-     *
-     * Formatting of printed message is handled by Book object, 
-     * see printDetails method in Book class.
-     * 
-     * For readablility, a separator containing the index number is added between each object
-     */
+   /**
+    * Calls the printDetails method for each Book object in library.
+    *
+    * Formatting of printed message is handled by Book object, 
+    * see printDetails method in Book class.
+    * 
+    * For readablility, a separator containing the index number is added 
+    * between each object
+    */
+    
     public void listAllBooks()
     {
         int index = 0; // counter for index number 
@@ -89,8 +102,10 @@ public class Library
      * If it's stupid, and it works, then it's not stupid.
      */
      
-     public void searchByKeyword(String keyword)
+     public void searchByKeywordWithUI()
      {
+        String keyword = JOptionPane.showInputDialog
+                            ("Search by either  book title, author name (capitalised), ISBN or publisher.");
         for (Book foundBook : library) {
             String allFields = foundBook.getFieldsAsString();
             if (allFields.contains(keyword)) {
@@ -139,24 +154,4 @@ public class Library
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
