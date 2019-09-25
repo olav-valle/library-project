@@ -7,16 +7,9 @@ import java.util.Iterator;
  * 
  * @author Olav Valle   
  * @version 20190908
+ * just adding a few lines here as a test
+ * to see if github VCS works in intelliJ
  */
-
-//TODO move fillTestLibrary to separate class
-//TODO add search by keyword
-//TODO add cli for user interaction
-    //TODO add/remove book
-    //TODO search book
-    //TODO list books
-//TODO make .jar of app
-
 public class Library
 {
     // only field is the ArrayList 
