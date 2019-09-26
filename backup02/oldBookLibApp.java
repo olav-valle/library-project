@@ -62,27 +62,29 @@ public class BookLibApp
     {
 	System.out.println("What is the title of the book you are searching for?");
 
-        ArrayList<Book> libraryCollection = library.getCollection();
+	boolean searchDone = false;
+	
+	while(!searchDone)
+	String userInput = reader.getStringInput().toLowerCase().trim();
+
+	ArrayList<Book> libraryCollection = library.getCollection();
 	Iterator<Book> it = libraryCollection.iterator();
 
-        Book foundBook;
+	Book foundBook;
 	boolean matchFound = false;
 
-	while(it.hasNext() && !matchFound) {    
-	       
-	    String userInput = reader.getStringInput().toLowerCase().trim();
+	while(it.hasNext() && !matchFound) {
 	    Book book = it.next();
-	    
 	    if(userInput.equals(book.getTitle().toLowerCase())) {
-	        System.out.println("Match Found:");
+		System.out.println("Match Found:");
 		foundBook = book;
 		printBookDetails(foundBook);
 		matchFound = true;
 	    }
 	}
-	    if(matchFound == false){System.out.println("No match found.");}
+	if(matchFound == false){System.out.println("No match found.");}
+
     }
-    
 
     public void listAllBooksIterator()
     {

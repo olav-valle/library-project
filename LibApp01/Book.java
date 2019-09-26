@@ -9,8 +9,8 @@ public class Book
     private String title;
     private String authorName;
     private String publisher;
-    private String date;
-    private String pages;
+    private int date;
+    private int pages;
     // using String for EAN-13 for now. 
     // possible to change to Long, for arithmetic 
     // TODO: find and implement an EAN-13 generator class?
@@ -19,19 +19,16 @@ public class Book
 
     /**
      * User inputs relevant information. 
-     * Borrowed status initialises to false, since book has not been 
-     * available until now.
+     * Borrowed status initialises to false, since book has not been available until now.
      * 
-     * Class does not contain methods for changing String fields 
-     * after initialisation
+     * Class does not contain methods for changing String fields after initialisation
      * 
      * 
-     * Warning: EAN-13 String does not demand 13 characters, and is only 
-     * placeholder for functional IAN/EAN-13 encoding. 
+     * Warning: EAN-13 String does not demand 13 characters, and is only placeholder for 
+     * functional IAN/EAN-13 encoding. 
      */
     public Book(String bookTitle, String bookAuthor, 
-                String bookPublisher, String publishingDate, 
-                String bookPages, String ean13)
+    String bookPublisher, int publishingDate, int bookPages, String ean13)
     {
         this.title = bookTitle;
         this.authorName = bookAuthor;
@@ -42,38 +39,54 @@ public class Book
         this.borrowed = false;
     }
 
-    // TODO: Add mutators for other fields, 
-    // e.g. in case original entry was misspelled?
-
-// -------------------- mutators --------------------
+    // mutators
+    // TODO: Add mutators for other fields, e.g. in case original entry was misspelled?
 
     /**
-     * Set borrowed status as boolean value.
-     * Called when book is checked out from, or returned to library.
-     * @param  status   boolean of "the book is currently being borrowed."
+     * set borrowed status
      */
     public void setBorrow(boolean status)
     {
         this.borrowed = status;
     }
 
-// -------------------- accessors --------------------
+    // separate accessors for all fields
 
-    public String getTitle() { return this.title; }
+    public String getTitle()
+    {
+        return title;
+    }
 
-    public String getName() { return this.authorName; }
+    public String getName()
+    {
+        return authorName;
+    }
 
-    public String getPublisher() { return this.publisher; }
+    public String getPublisher()
+    {
+        return publisher;
+    }
 
-    public String getDate() { return this.date; }
+    public int getDate()
+    {
+        return date;
+    }
 
-    public String getPages() { return this.pages; }
+    public int getPages()
+    {
+        return pages;
+    }
 
-    public String getRefNumber() { return this.ean13; }
+    public String getRefNumber()
+    {
+        return ean13;
+    }
 
-    public boolean getBorrowed() { return this.borrowed; }
-    
-    // returns a human readable string with borrowed status
+    public boolean getBorrowed()
+    {
+        return borrowed;
+    }
+
     public String getBorrowedAsString()
     {
         String borrowedString;
@@ -86,24 +99,10 @@ public class Book
         }
         return borrowedString;
     }
-    
-    /** 
-    * A very crude way of allowing String method contains() to be used as 
-    * search function on ALL fields at once. 
-    * Concatenates all object String fields into single String, and returns.
-    *
-    * I am so sorry. Please forgive me.
-    */
-    public String getFieldsAsString()
-    {
-        String allFields = (title + authorName + publisher + date + pages + ean13);
-        return allFields.toUpperCase();
-    }
 
-// -------------------- print methods --------------------
+    // print methods
     /**
      * Print the details from all fields to terminal.
-     * Call this method from Library object when listing book details
      */
     public void printDetails()
     {

@@ -1,7 +1,6 @@
 
 import java.util.Iterator;
 import java.util.ArrayList;
-import javax.swing.*;
 
 /**
  * A library class that creates and manages an ArrayList of Book objects.
@@ -46,61 +45,10 @@ public class Library
                                 publishingDate, bookPages, ean13);
         addBook(newBook);
     }
-
-    public void listAllBooksIterator()
+    public ArrayList<Book> getCollection()
     {
-	Iterator<Book> it = this.library.iterator();
-	while(it.hasNext())
-	{
-	    (it.next()).printDetails();
-	    // retrieve next book object disdasdrectly from iterator
-	    // and call .printDetails on it
-	}
+	return library;
     }
-    
-     //TODO: expand search function so it matches keyword to any string field in Book object
-     // option 1: return all fields from Book object as single string, and call .contains(keyword) on that string. Crude but easy(?).
-     // option 2: call each acccessor from Book object, check .contains(keword) on each, and set local variable boolean match; to true/false. Requires A LOT of conditionals, or one stupidly long conditinal with lots of ||.
-     
-     /**
-     * Calls a string from Book object, which contains all fields concatenated to one string.
-     * Performs a .contains() call on this string, and prints details of book if ANY match is found.
-     * If it's stupid, and it works, then it's not stupid.
-     */
-     
-     public void searchByKeywordWithUI()
-     {
-        String keyword = JOptionPane.showInputDialog
-                            ("Search by either  book title, author name (capitalised), ISBN or publisher.");
-        for (Book foundBook : library) {
-            String allFields = foundBook.getFieldsAsString();
-            if (allFields.contains(keyword)) {
-                System.out.println("###### MATCH FOUND ######");
-                foundBook.printDetails();
-            }       
-        }   
-     }
-     
-     
-/**
-* Variant of searchByKeyword with GUI elements
-* Uses javax.swing and JOptionPane for user input and result return
-*/          
-     public void searchByKeyword()
-     {
-        String keyword = JOptionPane.showInputDialog
-                        ("Enter search");
-        for (Book foundBook : library) {
-            String allFields = foundBook.getFieldsAsString();
-            if (allFields.contains(keyword)) {
-                JOptionPane.showMessageDialog(null,
-                foundBook.getName(),
-                "MATCH FOUND",
-                JOptionPane.INFORMATION_MESSAGE);
-            }       
-        }   
-     }
-     
      
     /**
      * Search function that prints details of matched hits.
