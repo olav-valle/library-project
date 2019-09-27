@@ -1,7 +1,8 @@
 
 import java.util.Iterator;
 import java.util.ArrayList;
-
+import java.util.stream.Collectors;
+import java.util.List;
 /**
  * A library class that creates and manages an ArrayList of Book objects.
  * 
@@ -45,27 +46,27 @@ public class Library
                                 publishingDate, bookPages, ean13);
         addBook(newBook);
     }
+    /**
+    * Method to filter a stream of the library ArrayList, and retun the filtered results as a list.
+    */
+    public Iterator<Book> filterByAuthor(String author)
+    {
+	String aut = author;
+	List<Book> matchingAuthor = library.stream()
+	    .filter(b -> aut.equals(b.getName().toLowerCase()))
+	    .collect(Collectors.toList());
+	    return matchingAuthor.iterator();
+    }
+
     public ArrayList<Book> getCollection()
     {
 	return library;
     }
      
-    /**
-     * Search function that prints details of matched hits.
-     * Uses for-loop, and checks every object in collection.
-     */
-     
-    // TODO: change to while-loop, and only show e.g. first five hits?
-    // while(matches < 5) etc. etc..
-    
-    public void searchByTitle(String keyword)
+    public Iterator<Book> getIterator()
     {
-        for (Book foundBook : library) {
-            String title = foundBook.getTitle();
-            if (title.contains(keyword)) {
-                foundBook.printDetails();
-            }
-        }
+	return library.iterator();
     }
+
 }
 

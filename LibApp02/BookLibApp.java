@@ -53,7 +53,8 @@ public class BookLibApp
 		exit = true;
 	    }
 	    else if(userInput == 1) {
-		searchByTitle();
+		//searchByTitle();
+		searchByAuthor();
 	    }
 	    else if(userInput == 3) {
 		listAllBooksIterator();
@@ -71,8 +72,8 @@ public class BookLibApp
 	System.out.println("##############################");
 	System.out.println("What is the title of the book you are searching for?");
 
-        ArrayList<Book> libraryCollection = library.getCollection();
-	Iterator<Book> it = libraryCollection.iterator();
+        //ArrayList<Book> libraryCollection = library.getCollection();
+	Iterator<Book> it = library.getIterator();
 
         Book foundBook;
 	boolean matchFound = false;
@@ -94,11 +95,27 @@ public class BookLibApp
 	    if(matchFound == false){System.out.println("No match found.");}
     }
     
+    /**
+    * Takes in author name from user, passes it to Library object. Library filters its 
+    * ArrayList using input, and returns an iterator object which is printed. 
+    */
+    private void searchByAuthor()
+    {
+	String userInput = reader.getStringInput().toLowerCase().trim();
+	Iterator<Book> it = library.filterByAuthor(userInput);
+
+	while(it.hasNext())
+	{
+	    printBookDetails(it.next());
+	}
+    }
+
+
 
     public void listAllBooksIterator()
     {
-	ArrayList<Book> libraryCollection = library.getCollection();
-	Iterator<Book> it = libraryCollection.iterator();
+	Iterator<Book> it = library.getIterator();
+	
 	int index = 1;
 
 	System.out.println("Listing all books in no particular order.");
