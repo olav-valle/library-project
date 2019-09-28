@@ -2,7 +2,7 @@
  * A class that maintains information on a book.
  *
  * @author Olav Valle
- * @version 2019.09.08
+ * @version 0.2-20190908
  */
 public class Book
 {
@@ -87,50 +87,5 @@ public class Book
         return borrowedString;
     }
     
-    /** 
-    * A very crude way of allowing String method contains() to be used as 
-    * search function on ALL fields at once. 
-    * Concatenates all object String fields into single String, and returns.
-    *
-    * I am so sorry. Please forgive me.
-    */
-    public String getFieldsAsString()
-    {
-        String allFields = (title + authorName + publisher + date + pages + ean13);
-        return allFields.toUpperCase();
-    }
 
-// -------------------- print methods --------------------
-    /**
-     * Print the details from all fields to terminal.
-     * Call this method from Library object when listing book details
-     */
-    public void printDetails()
-    {
-        System.out.println("Book title: " + title);
-        System.out.println("Author: " + authorName);
-        System.out.println("Publisher: " + publisher);
-        System.out.println("Date published: " + date);
-        System.out.println("Numer of pages: " + pages);
-        System.out.println(getBorrowedAsString());
-        System.out.println("EAN-13 reference: " + ean13);
-        System.out.println();
-    }
-
-
-    /**
-     * Prints name of author to terminal.
-     */
-    public void printAuthor()
-    {
-        System.out.println(authorName);
-    }
-
-    /**
-     * Prints title of book to terminal.
-     */
-    public void printTitle()
-    {
-        System.out.println(title);
-    }
 }

@@ -1,17 +1,23 @@
-
 import java.util.Iterator;
 import java.util.ArrayList;
 /**
-*The user interface of the book library application.
+* The user interface of the book library application.
+* Presents the user with a CLI menu list of app functions.
+* All search and print functionality is handled by this class,
+* while input and the library is handled externally.
 *@author Olav Valle
-*@version 0.1 (25/09/2019)
+*@version 0.1-20190924
 */
+
+//TODO Move search functions and list functions to separate class
+    //TODO alternative: handle search and list in the Library class 
 
 public class BookLibApp
 {
     private static BookLibApp app;
     private static InputReader reader;
     public Library library;
+
     /** 
     * Constructor
     */
@@ -19,8 +25,6 @@ public class BookLibApp
     {
 	reader = new InputReader();
 	library = new Library();
-
-
     }
 
     public static void main(String[] args)
@@ -30,69 +34,104 @@ public class BookLibApp
 	app.init();
     }
 
+    /**
+    * The user interface method. 
+    */
     private void init()
     {
 	boolean exit = false;
 	
 	fillLibrary();
-	printWelcome();
 	
-	while(!exit) {
-
-	int userInput = reader.getIntInput();
+	while(!exit)
+	{
+	    printWelcome();
+	    int userInput = reader.getIntInput();
 	    
 	    if(userInput == 4){
 		printFarewell();
 		exit = true;
 	    }
 	    else if(userInput == 1) {
-		searchByTitle();
+		//searchByTitle();
+		searchByAuthor();
 	    }
-	    
-
-
+	    else if(userInput == 3) {
+		listAllBooksIterator();
+	    }
 	}
     }
+
     /**
     * A search function. Requests input from user, gets book collection  
-    * object , and iterates through until a matching 
-    * title is found. 
+    * object , and iterates through until a matching title is found. 
     */
     private void searchByTitle()
     {
+	
+	System.out.println("##############################");
 	System.out.println("What is the title of the book you are searching for?");
 
-        ArrayList<Book> libraryCollection = library.getCollection();
-	Iterator<Book> it = libraryCollection.iterator();
+        //ArrayList<Book> libraryCollection = library.getCollection();
+	Iterator<Book> it = library.getIterator();
 
         Book foundBook;
 	boolean matchFound = false;
-
+	
 	while(it.hasNext() && !matchFound) {    
 	       
 	    String userInput = reader.getStringInput().toLowerCase().trim();
 	    Book book = it.next();
 	    
 	    if(userInput.equals(book.getTitle().toLowerCase())) {
-	        System.out.println("Match Found:");
+		System.out.println("");
+	        System.out.println("########## Match Found: ##########");
 		foundBook = book;
 		printBookDetails(foundBook);
+		System.out.println("");
 		matchFound = true;
 	    }
 	}
 	    if(matchFound == false){System.out.println("No match found.");}
     }
     
+    /**
+    * Takes in author name from user, passes it to Library object. Library filters its 
+    * ArrayList using input, and returns an iterator object which is printed. 
+    */
+    private void searchByAuthor()
+    {
+	String userInput = reader.getStringInput().toLowerCase().trim();
+	Iterator<Book> it = library.filterByAuthor(userInput);
+
+	while(it.hasNext())
+	{
+	    printBookDetails(it.next());
+	}
+    }
+
+
 
     public void listAllBooksIterator()
     {
-	ArrayList<Book> libraryCollection = library.getCollection();
-	Iterator<Book> it = libraryCollection.iterator();
+	Iterator<Book> it = library.getIterator();
+	
+	int index = 1;
+
+	System.out.println("Listing all books in no particular order.");
+	System.out.println("");
+        System.out.println("###############################");
+        System.out.println("");
+
 	while(it.hasNext())
 	{
-	    (it.next()).printDetails();
+	    printBookDetails(it.next());
+	    System.out.println("");
+	    System.out.println("###############################");
+	    System.out.println("");
 	    // retrieve next book object directly from iterator
-	    // and call .printDetails on it
+	    // and call print with it
+	    index++;
 	}
     }
 
@@ -109,6 +148,7 @@ public class BookLibApp
 
     private void printWelcome()
     {
+	System.out.println("");
 	System.out.println("Welcome to BookLibApp. What is your request?");
 	System.out.println("1. Search the library");
 	System.out.println("2. Add a book.");
@@ -122,7 +162,10 @@ public class BookLibApp
 	System.out.println("Thank you. Goodbye.");
     }
 
-
+    /**
+    * Fills the library with a small collection of books 
+    * for testing purposes.
+    */
     private void fillLibrary()
     {
         library.addBook("The Colour of Magic", "Terry Pratchett", "Corgi", "1985", "285", "9780552124751");
