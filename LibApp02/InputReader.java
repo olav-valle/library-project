@@ -42,7 +42,7 @@ public class InputReader
 
     public String getStringInput()
     {
-        System.out.print("> ");         // print prompt
+	System.out.print("> ");         // print prompt
 	
 	//get user input as String
 	String inputLine = reader.nextLine();
@@ -57,9 +57,10 @@ public class InputReader
     */
     public int getIntInput() 
     {
+	
         System.out.print("> ");         // print prompt
         int inputInt = reader.nextInt();
-
+	reader.nextLine(); //solves problem of leaving a line break behind
         return inputInt;
     }
 }
